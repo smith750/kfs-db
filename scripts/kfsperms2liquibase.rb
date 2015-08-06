@@ -17,7 +17,7 @@
 
 require 'csv'
 
-TABLE_CREATION = <<-table_creation
+TABLE_CREATION = <<-XML
   <createTable tableName="KRIM_PERM_TMPL_T">
       <column name="PERM_TMPL_ID" type="VARCHAR(40)">
           <constraints primaryKey="true"/>
@@ -127,4 +127,19 @@ TABLE_CREATION = <<-table_creation
       <column name="PERM_ID"/>
       <column name="ACTV_IND"/>
   </createIndex>
-table_creation
+XML
+
+LOAD_KRIM_PERM_T = <<-XML
+  <changeSet author="liquibase-docs" id="loadData-example">
+    <loadData file="/kfs-db/rice/data/krim_perm_t.txt" separator="|" tableName="KRIM_PERM_T">
+        <column name="PERM_ID" type="VARCHAR(40)"/>
+        <column name="OBJ_ID" type="VARCHAR(36)"/>
+        <column name="VER_NBR" type="DECIMAL(8)"/>
+        <column name="PERM_TMPL_ID" type="VARCHAR(40)"/>
+        <column name="NMSPC_CD" type="VARCHAR(40)"/>
+        <column name="NM" type="VARCHAR(100)"/>
+        <column name="DESC_TXT" type="VARCHAR(400)"/>
+        <column name="ACTV_IND" type="VARCHAR(1)" defaultValue="Y"/>
+    </loadData>
+  </changeSet>
+XML
