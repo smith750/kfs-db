@@ -42,4 +42,11 @@ TABLE_CREATION = <<-table_creation
   </createTable>
   <addUniqueConstraint tableName="KRIM_PERM_TMPL_T" constraintName="KRIM_PERM_TMPL_TC1" columnNames="NM,NMSPC_CD"/>
   <addForeignKeyConstraint constraintName="KRIM_PERM_TMPL_TR1" baseTableName="KRIM_PERM_TMPL_T" baseColumnNames="KIM_TYP_ID" referencedTableName="KRIM_TYP_T" referencedColumnNames="KIM_TYP_ID"/>
+
+  <!-- travis here -->
+
+  <!-- travis here-->
+
+  <!-- james here -->
+  <!-- james here -->
 table_creation
