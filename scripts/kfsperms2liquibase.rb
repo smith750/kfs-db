@@ -18,7 +18,7 @@
 require 'csv'
 
 TABLE_CREATION = <<-table_creation
-  <createTable name="KRIM_PERM_TMPL_T">
+  <createTable tableName="KRIM_PERM_TMPL_T">
       <column name="PERM_TMPL_ID" type="VARCHAR(40)">
           <constraints primaryKey="true"/>
       </column>
@@ -42,6 +42,10 @@ TABLE_CREATION = <<-table_creation
   </createTable>
   <addUniqueConstraint tableName="KRIM_PERM_TMPL_T" constraintName="KRIM_PERM_TMPL_TC1" columnNames="NM,NMSPC_CD"/>
   <addForeignKeyConstraint constraintName="KRIM_PERM_TMPL_TR1" baseTableName="KRIM_PERM_TMPL_T" baseColumnNames="KIM_TYP_ID" referencedTableName="KRIM_TYP_T" referencedColumnNames="KIM_TYP_ID"/>
+  <createIndex tableName="KRIM_PERM_TMPL_T" indexName="KRIM_PERM_TMPL_TI1">
+    <column name="NMSPC_CD"/>
+    <column name="NM"/>
+  </createIndex>
 
   <createTable name="KRIM_PERM_T">
         <column name="PERM_ID" type="VARCHAR(40)">
@@ -69,6 +73,27 @@ TABLE_CREATION = <<-table_creation
     <addUniqueConstraint tableName="KRIM_PERM_T" constraintName="KRIM_PERM_T_TC1" columnNames="NM,NMSPC_CD"/>
     <addForeignKeyConstraint constraintName="KRIM_PERM_TR1" baseTableName="KRIM_PERM_T" baseColumnNames="PERM_TMPL_ID" referencedTableName="KRIM_PERM_TMPL_T" referencedColumnNames="PERM_TMPL_ID"/>
 
-  <!-- james here -->
-  <!-- james here -->
+  <createTable tableName="KRIM_PERM_ATTR_DATA_T">
+        <column name="ATTR_DATA_ID" type="VARCHAR(40)">
+            <constraints primaryKey="true"/>
+        </column>
+        <column name="OBJ_ID" required="true" size="36" type="VARCHAR">
+            <constraints nullable="false" unique="true" uniqueConstraintName="KRIM_PERM_ATTR_DATA_TC0"/>
+        </column>
+        <column name="VER_NBR" type="DECIMAL(8)" defaultValueNumeric="1">
+            <constraints nullable="false"/>
+        </column>
+        <column name="PERM_ID" type="VARCHAR(40)"/>
+        <column name="KIM_TYP_ID" required="true" type="VARCHAR(40)">
+            <constraints nullable="false"/>
+        </column>
+        <column name="KIM_ATTR_DEFN_ID" type="VARCHAR(40)"/>
+        <column name="ATTR_VAL" type="VARCHAR(400)"/>
+    </createTable>
+    <addForeignKey constraintName="KRIM_PERM_ATTR_DATA_TR1" baseTableName="KRIM_PERM_ATTR_DATA_T" baseColumnNames="KIM_TYP_ID" referencedTableName="KRIM_TYP_T" referencedColumnNames="KIM_TYP_ID"/>
+    <addForeignKey constraintName="KRIM_PERM_ATTR_DATA_TR2" baseTableName="KRIM_PERM_ATTR_DATA_T" baseColumnNames="KIM_ATTR_DEFN_ID" referencedTableName="KRIM_ATTR_DEFN_T" referencedColumnNames="KIM_ATTR_DEFN_ID"/>
+    <addForeignKey constraintName="KRIM_PERM_ATTR_DATA_TR3" baseTableName="KRIM_PERM_ATTR_DATA_T" baseColumnNames="PERM_ID" referencedTableName="KRIM_PERM_T" referencedColumnNames="PERM_ID" onDelete="cascade"/>
+    <createIndex tableName="KRIM_PERM_ATTR_DATA_T" indexName="KRIM_PERM_ATTR_DATA_TI1">
+        <column name="PERM_ID"/>
+    </createIndex>
 table_creation
