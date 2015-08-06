@@ -44,28 +44,31 @@ TABLE_CREATION = <<-table_creation
   <addForeignKeyConstraint constraintName="KRIM_PERM_TMPL_TR1" baseTableName="KRIM_PERM_TMPL_T" baseColumnNames="KIM_TYP_ID" referencedTableName="KRIM_TYP_T" referencedColumnNames="KIM_TYP_ID"/>
 
   <createTable name="KRIM_PERM_T">
-      <column name="PERM_ID" type="VARCHAR(40)">
-          <constraints primaryKey="true"/>
-      </column>
-      <column name="OBJ_ID" type="VARCHAR(36)">
-          <constraints nullable="false" unique="true" uniqueConstraintName="KRIM_PERM_TC0"/>
-      </column>
-      <column name="VER_NBR" type="DECIMAL(8)" defaultValueNumeric="1">
-          <constraints nullable="false"/>
-      </column>
-      <column name="PERM_TMPL_ID" type="VARCHAR(40)">
-          <constraints unique="true" uniqueConstraintName="KRIM_PERM_TI1"/>
-      </column>
-      <column name="NMSPC_CD" type="VARCHAR(40)">
-          <constraints nullable="false"/>
-      </column>
-      <column name="NM" type="VARCHAR(100)">
-          <constraints nullable="false"/>
-      </column>
-      <column name="DESC_TXT" type="VARCHAR(400)"/>
-      <column name="ACTV_IND" type="VARCHAR(1)" defaultValue="Y"/>
-  </createTable>
-  <addUniqueConstraint tableName="KRIM_PERM_T" constraintName="KRIM_PERM_TI2" columnNames="PERM_TMPL_ID,ACTV_IND"/>
-  <addUniqueConstraint tableName="KRIM_PERM_T" constraintName="KRIM_PERM_T_TC1" columnNames="NM,NMSPC_CD"/>
-  <addForeignKeyConstraint constraintName="KRIM_PERM_TR1" baseTableName="KRIM_PERM_T" baseColumnNames="PERM_TMPL_ID" referencedTableName="KRIM_PERM_TMPL_T" referencedColumnNames="PERM_TMPL_ID"/>
+        <column name="PERM_ID" type="VARCHAR(40)">
+            <constraints primaryKey="true"/>
+        </column>
+        <column name="OBJ_ID" type="VARCHAR(36)">
+            <constraints nullable="false" unique="true" uniqueConstraintName="KRIM_PERM_TC0"/>
+        </column>
+        <column name="VER_NBR" type="DECIMAL(8)" defaultValueNumeric="1">
+            <constraints nullable="false"/>
+        </column>
+        <column name="PERM_TMPL_ID" type="VARCHAR(40)">
+            <constraints unique="true" uniqueConstraintName="KRIM_PERM_TI1"/>
+        </column>
+        <column name="NMSPC_CD" type="VARCHAR(40)">
+            <constraints nullable="false"/>
+        </column>
+        <column name="NM" type="VARCHAR(100)">
+            <constraints nullable="false"/>
+        </column>
+        <column name="DESC_TXT" type="VARCHAR(400)"/>
+        <column name="ACTV_IND" type="VARCHAR(1)" defaultValue="Y"/>
+    </createTable>
+    <addUniqueConstraint tableName="KRIM_PERM_T" constraintName="KRIM_PERM_TI2" columnNames="PERM_TMPL_ID,ACTV_IND"/>
+    <addUniqueConstraint tableName="KRIM_PERM_T" constraintName="KRIM_PERM_T_TC1" columnNames="NM,NMSPC_CD"/>
+    <addForeignKeyConstraint constraintName="KRIM_PERM_TR1" baseTableName="KRIM_PERM_T" baseColumnNames="PERM_TMPL_ID" referencedTableName="KRIM_PERM_TMPL_T" referencedColumnNames="PERM_TMPL_ID"/>
+
+  <!-- james here -->
+  <!-- james here -->
 table_creation
